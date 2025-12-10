@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User';
@@ -11,7 +11,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'change-this-secret';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 
 // Register
-router.post('/register', authLimiter, async (req, res: Response) => {
+router.post('/register', authLimiter, async (req, res) => {
     try {
         const { email, password, displayName } = req.body;
 
@@ -57,7 +57,7 @@ router.post('/register', authLimiter, async (req, res: Response) => {
 });
 
 // Login
-router.post('/login', authLimiter, async (req, res: Response) => {
+router.post('/login', authLimiter, async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -96,7 +96,7 @@ router.post('/login', authLimiter, async (req, res: Response) => {
 });
 
 // Get current user
-router.get('/me', authenticate, async (req: AuthRequest, res: Response) => {
+router.get('/me', authenticate, async (req: AuthRequest, res) => {
     try {
         const user = req.user!;
         res.json({

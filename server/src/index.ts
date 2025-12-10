@@ -1,4 +1,5 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+
 import cors from 'cors';
 import helmet from 'helmet';
 import http from 'http';
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use('/api', apiLimiter);
 
 // Health check
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 

@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
 import { Problem } from '../models/Problem';
 import { AuthRequest, optionalAuth, authenticate, requireAdmin } from '../middleware/auth';
 import { logger } from '../utils/logger';
@@ -6,7 +6,7 @@ import { logger } from '../utils/logger';
 const router = Router();
 
 // Get all problems with filtering and pagination
-router.get('/', optionalAuth, async (req: AuthRequest, res: Response) => {
+router.get('/', optionalAuth, async (req: AuthRequest, res) => {
     try {
         const {
             page = '1',
@@ -83,7 +83,7 @@ router.get('/', optionalAuth, async (req: AuthRequest, res: Response) => {
 });
 
 // Get problem by slug
-router.get('/:slug', optionalAuth, async (req: AuthRequest, res: Response) => {
+router.get('/:slug', optionalAuth, async (req: AuthRequest, res) => {
     try {
         const { slug } = req.params;
 
@@ -112,7 +112,7 @@ router.get('/:slug', optionalAuth, async (req: AuthRequest, res: Response) => {
 });
 
 // Get public testcases
-router.get('/:id/testcases/public', async (req, res: Response) => {
+router.get('/:id/testcases/public', async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -138,7 +138,7 @@ router.get('/:id/testcases/public', async (req, res: Response) => {
 });
 
 // Create problem (admin only)
-router.post('/', authenticate, requireAdmin, async (req: AuthRequest, res: Response) => {
+router.post('/', authenticate, requireAdmin, async (req: AuthRequest, res) => {
     try {
         const problemData = req.body;
         problemData.createdBy = req.userId;
@@ -154,7 +154,7 @@ router.post('/', authenticate, requireAdmin, async (req: AuthRequest, res: Respo
 });
 
 // Update problem (admin only)
-router.put('/:id', authenticate, requireAdmin, async (req, res: Response) => {
+router.put('/:id', authenticate, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
         const updates = req.body;
@@ -173,7 +173,7 @@ router.put('/:id', authenticate, requireAdmin, async (req, res: Response) => {
 });
 
 // Delete problem (admin only)
-router.delete('/:id', authenticate, requireAdmin, async (req, res: Response) => {
+router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
     try {
         const { id } = req.params;
 

@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
 import { Submission } from '../models/Submission';
 import { Problem } from '../models/Problem';
 import { AuthRequest, authenticate } from '../middleware/auth';
@@ -9,7 +9,7 @@ import { logger } from '../utils/logger';
 const router = Router();
 
 // Submit code
-router.post('/', authenticate, submissionLimiter, async (req: AuthRequest, res: Response) => {
+router.post('/', authenticate, submissionLimiter, async (req: AuthRequest, res) => {
     try {
         const { problemId, language, code } = req.body;
 
@@ -57,7 +57,7 @@ router.post('/', authenticate, submissionLimiter, async (req: AuthRequest, res: 
 });
 
 // Get submission by ID
-router.get('/:id', authenticate, async (req: AuthRequest, res: Response) => {
+router.get('/:id', authenticate, async (req: AuthRequest, res) => {
     try {
         const { id } = req.params;
 
@@ -85,7 +85,7 @@ router.get('/:id', authenticate, async (req: AuthRequest, res: Response) => {
 });
 
 // Get user's submissions
-router.get('/user/:userId', authenticate, async (req: AuthRequest, res: Response) => {
+router.get('/user/:userId', authenticate, async (req: AuthRequest, res) => {
     try {
         const { userId } = req.params;
         const { page = '1', limit = '20', problemId } = req.query;
@@ -131,7 +131,7 @@ router.get('/user/:userId', authenticate, async (req: AuthRequest, res: Response
 });
 
 // Quick debug run (not a full submission)
-router.post('/run-debug', authenticate, submissionLimiter, async (req: AuthRequest, res: Response) => {
+router.post('/run-debug', authenticate, submissionLimiter, async (req: AuthRequest, res) => {
     try {
         const { problemId, language, code, customInput } = req.body;
 

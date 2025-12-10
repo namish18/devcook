@@ -1,8 +1,7 @@
-import { Database } from 'sqlite3';
 import { ITestcase } from '../../models/Problem';
 import { Dataset } from '../../models/Dataset';
 import { OutputComparator } from '../comparators';
-import { ExecutionResult, TestcaseStatus } from './judge0Runner';
+import { ExecutionResult } from './judge0Runner';
 import { logger } from '../../../utils/logger';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -80,7 +79,7 @@ export class SQLRunner {
         dbPath: string,
         timeLimitMs: number
     ): Promise<ExecutionResult> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const sqlite3 = require('sqlite3').verbose();
             const db = new sqlite3.Database(dbPath);
 
@@ -125,7 +124,7 @@ export class SQLRunner {
                     }
 
                     // Execute user query
-                    db.all(sqlQuery, [], (err, rows) => {
+                    db.all(sqlQuery, [], (err: any, rows: any) => {
                         clearTimeout(timeout);
 
                         if (err) {
