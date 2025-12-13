@@ -4,60 +4,57 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors;
+    @apply bg-white dark:bg-black text-black dark:text-white transition-colors;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+    @apply bg-black text-white hover:bg-gray-800 focus:ring-black dark:bg-white dark:text-black dark:hover:bg-gray-100 dark:focus:ring-white;
   }
 
   .btn-secondary {
-    @apply bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600 focus:ring-gray-500;
+    @apply bg-gray-100 text-black hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-700;
   }
 
-  .btn-success {
-    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
-  }
-
-  .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  .btn-outline {
+    @apply border-2 border-black text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black;
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-6;
+    @apply bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800 p-6 transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply hover:border-black dark:hover:border-white hover:shadow-lg;
   }
 
   .input {
-    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500;
+    @apply w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all duration-200;
   }
 
   .badge {
-    @apply px-2 py-1 text-xs font-semibold rounded-full;
-  }
-
-  .badge-success {
-    @apply bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200;
+    @apply px-3 py-1 text-xs font-semibold rounded-full;
   }
 
   .badge-easy {
-    @apply bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200;
+    @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white;
   }
 
   .badge-medium {
-    @apply bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200;
+    @apply bg-gray-200 text-black dark:bg-gray-800 dark:text-white;
   }
 
   .badge-hard {
-    @apply bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200;
+    @apply bg-black text-white dark:bg-white dark:text-black;
   }
 }
 
 .monaco-editor {
-  @apply rounded-lg overflow-hidden;
+  @apply rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800;
 }

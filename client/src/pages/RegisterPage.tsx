@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { FiCode } from 'react-icons/fi';
+import { BiCode } from 'react-icons/bi';
+import { HiArrowRight } from 'react-icons/hi';
 
 const RegisterPage: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -28,26 +29,26 @@ const RegisterPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black px-4">
             <div className="max-w-md w-full space-y-8">
                 <div className="text-center">
-                    <FiCode className="mx-auto text-5xl text-primary-600" />
-                    <h2 className="mt-6 text-3xl font-bold">Create your account</h2>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Join LeetClone and start coding
+                    <BiCode className="mx-auto text-6xl text-black dark:text-white mb-6" />
+                    <h2 className="text-3xl font-bold tracking-tight">Create Account</h2>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">
+                        Join and start solving problems
                     </p>
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     {error && (
-                        <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-3 rounded-lg text-sm">
+                        <div className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white p-4 rounded-lg text-sm border border-gray-200 dark:border-gray-800">
                             {error}
                         </div>
                     )}
 
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="displayName" className="block text-sm font-medium mb-1">
+                            <label htmlFor="displayName" className="block text-sm font-semibold mb-2">
                                 Display Name
                             </label>
                             <input
@@ -55,13 +56,14 @@ const RegisterPage: React.FC = () => {
                                 type="text"
                                 required
                                 className="input"
+                                placeholder="John Doe"
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium mb-1">
+                            <label htmlFor="email" className="block text-sm font-semibold mb-2">
                                 Email
                             </label>
                             <input
@@ -69,13 +71,14 @@ const RegisterPage: React.FC = () => {
                                 type="email"
                                 required
                                 className="input"
+                                placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium mb-1">
+                            <label htmlFor="password" className="block text-sm font-semibold mb-2">
                                 Password
                             </label>
                             <input
@@ -84,6 +87,7 @@ const RegisterPage: React.FC = () => {
                                 required
                                 minLength={6}
                                 className="input"
+                                placeholder="Minimum 6 characters"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -93,14 +97,15 @@ const RegisterPage: React.FC = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="btn btn-primary w-full"
+                        className="btn btn-primary w-full flex items-center justify-center space-x-2 py-3"
                     >
-                        {loading ? 'Creating account...' : 'Create account'}
+                        <span>{loading ? 'Creating account...' : 'Create account'}</span>
+                        {!loading && <HiArrowRight className="text-lg" />}
                     </button>
 
                     <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                         Already have an account?{' '}
-                        <Link to="/login" className="text-primary-600 hover:underline">
+                        <Link to="/login" className="font-semibold text-black dark:text-white hover:underline">
                             Sign in here
                         </Link>
                     </p>
